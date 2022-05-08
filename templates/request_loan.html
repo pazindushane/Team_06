@@ -141,7 +141,11 @@
                             <label for="loan_amount">Request Loan Amount(Rs.)</label>
                         </div>
                     </div>
-
+                    <div class="col-md m-3 ">
+                        <button type="button" class="btn btn-primary text-center m-2" onclick="calc_loan_amount()">Calc
+                        </button>
+                        <button type="submit" class="btn btn-danger text-center m-2" onclick="validation2()">Request Loan</button>
+                    </div>
                     <div class="col-md m-3 ">
                         <div class="form-floating">
                             <input type="text" name="total" class="form-control" id="total"
@@ -159,22 +163,18 @@
                     <div class="col-md m-3 ">
                         <div class="form-floating">
                             <input type="text" name="person_id_1_amount" class="form-control" id="person_id_1_amount"
-                                   placeholder="" disabled>
+                                   placeholder="User 1 Amount(Rs.)" >
                             <label for="person_id_1_amount">User 1 Amount(Rs.)</label>
                         </div>
                     </div>
                     <div class="col-md m-3">
                         <div class="form-floating">
                             <input type="text" name="person_id_2_amount" class="form-control" id="person_id_2_amount"
-                                   placeholder="" disabled>
+                                   placeholder="User 2 Amount(Rs.)" >
                             <label for="person_id_2_amount">User 2 Amount(Rs.)</label>
                         </div>
                     </div>
-                    <div class="col-md m-3 ">
-                        <button type="button" class="btn btn-danger text-center m-2" onclick="calc_loan_amount()">Calc
-                        </button>
-                        <button type="submit" class="btn btn-danger text-center m-2">Request</button>
-                    </div>
+
                 </div>
             </div>
         </section>

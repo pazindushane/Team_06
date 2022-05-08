@@ -41,6 +41,58 @@ function validation() {
     }
 }
 
+
+function validation2() {
+
+    let loan_amount = $('#loan_amount').val();
+    let user_id = $('#user_id').val();
+    let person_id_1 = $('#person_id_1').val();
+    let person_id_1_amount = $('#person_id_1_amount').val();
+    let person_id_2 = $('#person_id_2').val();
+    let person_id_2_amount = $('#person_id_2_amount').val();
+
+    if (user_id == '') {
+
+        Swal.fire({
+            text: 'Please enter your id!',
+            title: 'Oops...',
+            icon: 'error'
+        })
+        return false;
+    }
+    if (person_id_1 == '') {
+        Swal.fire({
+            text: 'Please enter user id 1!',
+            title: 'Oops...',
+            icon: 'error'
+        })
+        return false;
+    }
+    if (person_id_2 == '') {
+        Swal.fire({
+            text: 'Please enter user id 2!',
+            title: 'Oops...',
+            icon: 'error'
+        })
+        return false;
+    } if (loan_amount == '') {
+        Swal.fire({
+            text: 'Please enter loan amount!',
+            title: 'Oops...',
+            icon: 'error'
+        })
+        return false;
+    } else {
+
+        Swal.fire({
+            text: 'Your Loan Request successfully sent!!',
+            title: 'Great...',
+            icon: 'success'
+        })
+    }
+}
+
+
 function getUser() {
 
     $.ajax({
@@ -152,15 +204,15 @@ function calc_loan_amount() {
     let amount1 = $('#deposit1').val();
     let amount2 = $('#deposit2').val();
     let loan = $('#loan_amount').val();
-    let tot=parseFloat(amount1)+parseFloat(amount2);
-    let max=(parseFloat(tot)/100)*80;
-    let user1=(parseFloat(loan)*parseFloat(amount1))/parseFloat(tot).toFixed(1);
-    let user2=(parseFloat(loan)*parseFloat(amount2))/parseFloat(tot).toFixed(1);
+    let tot=parseInt(amount1)+parseInt(amount2);
+    let max=(parseInt(tot)/100)*80;
+    let user1=(parseInt(loan)*parseInt(amount1))/parseInt(tot);
+    let user2=(parseInt(loan)*parseInt(amount2))/parseInt(tot);
 
     $('#total').val(tot);
     $('#maxamount').val(max);
-    $('#person_id_1_amount').val(user1);
-    $('#person_id_2_amount').val(user2);
+    $('#person_id_1_amount').val(Math.round(user1));
+    $('#person_id_2_amount').val(Math.round(user2));
 
 
 }

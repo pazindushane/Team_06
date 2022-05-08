@@ -5,6 +5,7 @@ import json
 app = Flask(__name__)
 
 database = 'db/db.json'
+database_loan = 'db/loan.json'
 
 
 @app.route("/")
@@ -27,6 +28,7 @@ def view_index():  # http://127.0.0.1:5000/
 @app.route('/get_debits', methods=["GET"])
 def get_debits():
     return jsonify(json.load(open(database, mode="r", encoding="utf-8")))
+
 
 #
 # @app.route("/debit", methods=['POST'])
@@ -105,6 +107,81 @@ def debit():
             saveJson(data)
 
     return render_template('index.html')
+
+
+#
+
+@app.route("/request_loan_amount", methods=['POST', 'GET'])
+def request_loan_amount():
+    # loan_id = ''
+    loan_amount = ''
+    user_id = ''
+    person_id_1 = ''
+    person_id_1_amount = ''
+    person_id_2 = ''
+    person_id_2_amount = ''
+
+    if request.method == "POST":
+
+        # if "loan_id" in request.form:
+        #     loan_id = request.form["loan_id"]
+        if "loan_amount" in request.form:
+            loan_amount = request.form["loan_amount"]
+        if "user_id" in request.form:
+            user_id = request.form["user_id"]
+        if "person_id_1" in request.form:
+            person_id_1 = request.form["person_id_1"]
+        if "person_id_1_amount" in request.form:
+            person_id_1_amount = request.form["person_id_1_amount"]
+        if "person_id_2" in request.form:
+            person_id_2 = request.form["person_id_2"]
+        if "person_id_2_amount" in request.form:
+            person_id_2_amount = request.form["person_id_2_amount"]
+    print("*** ",loan_amount,user_id,person_id_1,person_id_1_amount,person_id_2,person_id_2_amount)
+    isEmpty = empty_data(database_loan)
+    print("isEmpty ",isEmpty)
+
+    if loan_amount == '' or user_id == '' or  person_id_1 == '' or person_id_1_amount == '' or   person_id_2 == '' or  person_id_2_amount == ''  :
+        pass
+    else:
+
+        if isEmpty:
+
+            data = {
+                        # 'loan_id':loan_id,
+                        'loan_amount': loan_amount,
+                        'user_id': user_id,
+                        'person_id_1':person_id_1,
+                        'person_id_1_amount': person_id_1_amount,
+                        'person_id_2': person_id_2,
+                        'person_id_2_amount': person_id_2_amount
+                   },
+            exit_file = open(database_loan, "w")
+            json.dump(data, exit_file, indent=6)
+            exit_file.close()
+
+        else:
+
+            def saveJson(data, database='db/loan.json'):
+                with open(database, 'r+') as db:
+                    json_data = json.load(db)
+                    json_data.append(data)
+                    db.seek(0)
+                    json.dump(json_data, db, indent=6)
+
+            data = {
+                # 'loan_id':loan_id,
+                'loan_amount' : loan_amount,
+                'user_id' : user_id,
+                'person_id_1':person_id_1,
+                'person_id_1_amount' : person_id_1_amount,
+                'person_id_2' : person_id_2,
+                'person_id_2_amount' : person_id_2_amount
+            }
+
+            saveJson(data)
+
+    return render_template('request_loan.html')
 
 
 if __name__ == "__main__":

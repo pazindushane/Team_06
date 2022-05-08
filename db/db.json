@@ -1,7 +1,7 @@
 [
    {
       "id": "c001",
-      "name": "mindula",
+      "name": "Amara",
       "debit": "100"
    },
    {
@@ -12,11 +12,16 @@
    {
       "id": "c003",
       "name": "shane",
-      "debit": "3000"
+      "debit": "500"
    },
    {
       "id": "c004",
-      "name": "kkkkk",
-      "debit": "800"
+      "name": "pramuda",
+      "debit": "400"
+   },
+   {
+      "id": "c005",
+      "name": "nuwan",
+      "debit": "1200"
    }
 ]

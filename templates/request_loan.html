@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ගනුදෙනු </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../static/sweetalert/sweetalert2.min.css" rel="stylesheet">
+
+    <style>
+        nav {
+            margin-bottom: 3%;
+            margin-left: 30%;
+            width: 100vw;
+        }
+
+        nav a {
+            color: #3c006c;
+            font-size: 1.8em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<section class="container mt-4">
+
+    <nav>
+        <a href="{{ url_for('view_home') }}">Home</a>
+        <a href="{{ url_for('view_index') }}">Debit Portal</a>
+        <a href="{{ url_for('request_loan') }}">Loan Request</a>
+    </nav>
+    <hr>
+    <h1 class="text-center" style="color: dodgerblue">Loan Request</h1>
+    <form action="{{url_for('request_loan_amount')}}" method="post">
+        <div class="row g-2 mt-4">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" name="user_id" class="form-control" id="id_loan"
+                           placeholder="User ID : c001">
+                    <label for="id_loan">Enter Your ID</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" name="name" class="form-control" id="name_loan"
+                           placeholder="User ID : c001" disabled>
+                    <label for="name_loan">Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" name="id" class="form-control" id="debit_loan"
+                           placeholder="User ID : c001" disabled>
+                    <label for="debit_loan">Deposit Value(Rs.)</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-warning text-center m-2" onclick="getUser()">Get My Details
+                </button>
+            </div>
+
+
+        </div>
+        <div class="row g-2 mt-2 justify-content-center align-item-center">
+            <div class="col-md-2"></div>
+        </div>
+        <hr>
+
+        <section>
+
+            <div class="row g-2 mt-2 justify-content-center align-item-center">
+
+                <div class="col-md-4" style="background: #65c7fc">
+
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="person_id_1" class="form-control" id="person_id_1"
+                                   placeholder="User ID : c001">
+                            <label for="person_id_1">Enter Partner ID</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="name1" class="form-control" id="name1"
+                                   placeholder="User ID : c001" disabled>
+                            <label for="name1">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="deposit1" class="form-control" id="deposit1"
+                                   placeholder="User ID : c001" disabled>
+                            <label for="deposit1">Deposit Value(Rs.)</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="button" class="btn btn-success text-center m-2" onclick="getUser1()">Search
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 " style="background: #ab83ff">
+                    <div class="col-md m-3 ">
+                        <div class="form-floating">
+                            <input type="text" name="person_id_2" class="form-control" id="person_id_2"
+                                   placeholder="User ID : c001">
+                            <label for="person_id_2">Enter Partner ID</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="name2" class="form-control" id="name2"
+                                   placeholder="User ID : c001" disabled>
+                            <label for="name2">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="deposit2" class="form-control" id="deposit2"
+                                   placeholder="User ID : c001" disabled>
+                            <label for="deposit2">Deposit Value(Rs.)</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="button" class="btn btn-success text-center m-2" onclick="getUser2()">Search
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 align-item-center" style="background: #d0d0d0">
+
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="loan_amount" class="form-control" id="loan_amount"
+                                   placeholder="Request Loan Amount(Rs.)">
+                            <label for="loan_amount">Request Loan Amount(Rs.)</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3 ">
+                        <button type="button" class="btn btn-primary text-center m-2" onclick="calc_loan_amount()">Calc
+                        </button>
+                        <button type="submit" class="btn btn-danger text-center m-2" onclick="validation2()">Request Loan</button>
+                    </div>
+                    <div class="col-md m-3 ">
+                        <div class="form-floating">
+                            <input type="text" name="total" class="form-control" id="total"
+                                   placeholder="" disabled>
+                            <label for="total">Total Amount(Rs.)</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="maxamount" class="form-control" id="maxamount"
+                                   placeholder="" disabled>
+                            <label for="maxamount">Max Amount(Rs.)</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3 ">
+                        <div class="form-floating">
+                            <input type="text" name="person_id_1_amount" class="form-control" id="person_id_1_amount"
+                                   placeholder="User 1 Amount(Rs.)" >
+                            <label for="person_id_1_amount">User 1 Amount(Rs.)</label>
+                        </div>
+                    </div>
+                    <div class="col-md m-3">
+                        <div class="form-floating">
+                            <input type="text" name="person_id_2_amount" class="form-control" id="person_id_2_amount"
+                                   placeholder="User 2 Amount(Rs.)" >
+                            <label for="person_id_2_amount">User 2 Amount(Rs.)</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </form>
+</section>
+</body>
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="../static/js/script.js"></script>
+<script src="../static/sweetalert/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
